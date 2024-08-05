@@ -1,9 +1,17 @@
 import React from 'react'
+import Sidebar from '../../components/SideBar'
 
 const InterviewPrep = () => {
   return (
     <div>
-      InterviewPrep
+
+<div className="flex  h-screen">
+    <Sidebar/>
+    
+    <div> InterviewPrep</div>
+    </div>
+
+     
     </div>
   )
 }

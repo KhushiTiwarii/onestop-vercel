@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 import { getDocument } from 'pdfjs-dist/webpack';
+import Sidebar from '../../components/SideBar';
 
 const AtsScanner = () => {
   const [jd, setJd] = useState('');
@@ -205,7 +206,10 @@ Give response in points and highlight the headings in black and bold.
   };
 
   return (
-    <div className="resume-scanner flex flex-col w-full px-8">
+    <div className="flex  h-screen">
+      <Sidebar/>
+      
+      <div className="resume-scanner flex flex-col w-full px-8">
       <h1 className=' text-4xl font-bold'>Smart ATS</h1>
       <h1 className=" my-7 font-bold text-gray-500">Improve Your Resume ATS</h1>
       <h1 className=" mb-2 text-gray-500">Paste the Job Description</h1>
@@ -227,6 +231,7 @@ Give response in points and highlight the headings in black and bold.
         {result}
         </div>}
     </div>
+    </div> 
   );
 };
 

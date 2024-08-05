@@ -1,12 +1,13 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
   LayoutDashboard,
   File as FileIcon,
   Book as BookIcon,
   Search as SearchIcon,
   Briefcase as BriefcaseIcon,
-  Youtube as YoutubeIcon
+  Youtube as YoutubeIcon,
+  Menu as MenuIcon,
+  X as CloseIcon
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +27,7 @@ const routes = [
   {
     label: "Placement Resources",
     icon: BookIcon,
-    path: "/resources",
+    path: "/playlist",
     color: "text-red-500",
   },
   {
@@ -41,25 +42,32 @@ const routes = [
     path: "/jobs",
     color: "text-blue-200",
   },
-  {
-    label: "Popular PlayLists",
-    icon: YoutubeIcon,
-    path: "/playlist",
-    color: "text-red-200",
-  },
+  
 ];
 
 const Sidebar = () => {
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="flex flex-col h-full bg-purple-950">
+    <div className={`flex flex-col h-full bg-purple-950 ${isExpanded ? 'w-64' : 'w-20'} transition-width duration-300`}>
+      <div className="flex items-center justify-between px-3 py-3">
+        {isExpanded && <span className="text-white text-xl">Logo</span>}
+        <button onClick={toggleSidebar} className="text-white">
+          {isExpanded ? <CloseIcon size={24} /> : <MenuIcon size={24} />}
+        </button>
+      </div>
       <div className="px-3 py-9 flex-1 space-y-4">
         {routes.map((route) => (
           <Link to={route.path} key={route.path} className="block">
             <div
-              className="flex items-center p-4 rounded-md bg-white text-white backdrop-blur-md bg-opacity-20 shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl space-x-3"
+              className={`flex items-center p-4 rounded-md bg-white text-white backdrop-blur-md bg-opacity-20 shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl ${!isExpanded ? 'justify-center' : 'space-x-3'}`}
             >
-              <route.icon className={`w-9 h-9 ${route.color}`} />
-              <span className="text-white">{route.label}</span>
+              <route.icon className={`${route.color}`} size={isExpanded ? 36 : 24} />
+              {isExpanded && <span className="text-white">{route.label}</span>}
             </div>
           </Link>
         ))}
