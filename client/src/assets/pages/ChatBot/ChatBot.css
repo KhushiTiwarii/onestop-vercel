@@ -1,0 +1,28 @@
+
+  
+  .chat{
+    position: sticky;
+    top: 29%;
+    right: 0;
+    background: transparent;
+    z-index: 200;
+   
+
+  }
+
+  .chatcontainer{
+    position: fixed;
+    height: 600px;
+    width: 400px;
+   margin-left: 77vw;
+  }
+/* 
+  style={{ height: "600px", width: "400px" }}  */
+
+  @media screen and (max-width:850px) {
+    .chatcontainer{
+      margin-left: 0;
+      height: 500px;
+      width: 350px;
+    }
+  }

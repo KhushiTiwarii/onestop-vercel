@@ -1,0 +1,23 @@
+/* src/styles.css */
+.video-player {
+    margin-bottom: 20px;
+  }
+  
+  .video-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .video-list > div {
+    margin: 10px;
+  }
+  
+  .video-list img {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .video-list img:hover {
+    transform: scale(1.05);
+  }
+  
