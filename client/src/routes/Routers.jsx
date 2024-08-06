@@ -16,6 +16,8 @@ import PlacementResources from '../assets/pages/PlacementResources'
 import JobSearch from '../assets/pages/JobSearch'
 import Landing from '../components/Landing'
 import AddJob from '../assets/pages/AddJobForm'
+import Lobby from '../assets/pages/mockinterview/Lobby'
+import Room from '../assets/pages/mockinterview/Room'
 
 const Routers = () => {
   return (
@@ -30,6 +32,8 @@ const Routers = () => {
         <Route path='/recruitor' element={<ProtectedRoutes allowedRoles={["recruitor"]}><Recruitor/></ProtectedRoutes>}/>
         <Route path="/ats" element={<AtsScanner />} />
           <Route path="/interview-prep" element={<InterviewPrep />} />
+          <Route path="/room" element={<Lobby />} />
+          <Route path="/room/:roomId" element={<Room />} />
           <Route pasth="/resources" element={<PlacementResources />} />
           <Route path="/jobs" element={<JobSearch />} />
           <Route path="/playlist" element={<PlayLists />} />
