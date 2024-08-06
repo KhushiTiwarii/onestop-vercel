@@ -33,34 +33,65 @@ const AddJobForm = () => {
     salary: ''
   });
 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleTypeChange = (value) => {
-    setFormData({ ...formData, type: value });
+  const handleTypeChange = (option) => {
+    setFormData({ ...formData, type: option?.value || '' });
   };
 
-  const handleLocationChange = (value) => {
-    setFormData({ ...formData, location: value });
+  const handleLocationChange = (option) => {
+    setFormData({ ...formData, location: option?.value || '' });
   };
 
-  const handleSkillsChange = (values) => {
-    setFormData({ ...formData, skills: values });
+  const handleSkillsChange = (options) => {
+    setFormData({ ...formData, skills: options.map(option => option.value) });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Here, you can add the logic to send formData to your backend API
+    try {
+      const response = await fetch('/api/v1/jobs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setSuccessMessage('Job added successfully!');
+        setErrorMessage('');
+        // Clear form data
+        setFormData({
+          company: '',
+          position: '',
+          type: '',
+          location: '',
+          skills: [],
+          experience: '',
+          salary: ''
+        });
+      } else {
+        setSuccessMessage('');
+        setErrorMessage(result.message || 'Failed to add job.');
+      }
+    } catch (error) {
+      setSuccessMessage('');
+      setErrorMessage('An error occurred while adding the job.');
+    }
   };
 
   return (
     <div className="max-w-4xl mx-auto mt-8">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Add Job</h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="mb-4">
             <label className="block text-gray-700 font-medium">Company:</label>
@@ -91,7 +122,7 @@ const AddJobForm = () => {
             <Select
               name="type"
               options={typeOptions}
-              className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full"
               classNamePrefix="select"
               value={typeOptions.find(option => option.value === formData.type)}
               onChange={handleTypeChange}
@@ -104,7 +135,7 @@ const AddJobForm = () => {
             <Select
               name="location"
               options={locationOptions}
-              className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full"
               classNamePrefix="select"
               value={locationOptions.find(option => option.value === formData.location)}
               onChange={handleLocationChange}
@@ -118,9 +149,9 @@ const AddJobForm = () => {
               isMulti
               name="skills"
               options={skillsOptions}
-              className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:border-blue-500"
+              className="w-full"
               classNamePrefix="select"
-              value={formData.skills}
+              value={skillsOptions.filter(option => formData.skills.includes(option.value))}
               onChange={handleSkillsChange}
               placeholder="Select skills"
             />
@@ -157,6 +188,14 @@ const AddJobForm = () => {
         >
           Add Job
         </button>
+
+        {successMessage && (
+          <p className="mt-4 text-green-600 font-semibold text-center">{successMessage}</p>
+        )}
+
+        {errorMessage && (
+          <p className="mt-4 text-red-600 font-semibold text-center">{errorMessage}</p>
+        )}
       </form>
     </div>
   );
