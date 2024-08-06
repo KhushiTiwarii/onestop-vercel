@@ -15,6 +15,7 @@ import InterviewPrep from '../assets/pages/InterviewPrep'
 import PlacementResources from '../assets/pages/PlacementResources'
 import JobSearch from '../assets/pages/JobSearch'
 import Landing from '../components/Landing'
+import AddJob from '../assets/pages/AddJobForm'
 import Lobby from '../assets/pages/mockinterview/Lobby'
 import Room from '../assets/pages/mockinterview/Room'
 
@@ -37,6 +38,7 @@ const Routers = () => {
           <Route path="/jobs" element={<JobSearch />} />
           <Route path="/playlist" element={<PlayLists />} />
           <Route path="/playlist/:id" element={<PlaylistContent />} />
+          <Route path="/add-job" element={<AddJob />} />
     </Routes>
   )
 }
