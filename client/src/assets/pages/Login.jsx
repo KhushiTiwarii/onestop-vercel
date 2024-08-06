@@ -51,15 +51,16 @@ const Login = () => {
         }
       })
 
-      console.log(result,"login data");
-
-      setLoading(false)
-      toast.success(result.message)
-      navigate('/home')
-    } catch (error) {
-      toast.error(error.message)
-      setLoading(false)
+      if (result.role === 'student') {
+        navigate('/home');
+    } 
+    if (result.role === 'recruitor') {
+        navigate('/recruitor');
     }
+} catch (error) {
+    toast.error(error.message);
+    setLoading(false);
+}
 }
 
   return (
