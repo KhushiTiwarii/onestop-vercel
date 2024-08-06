@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.16.5",
     "@mui/material": "^5.16.5",
     "@nextui-org/react": "^2.4.6",
+    "@zegocloud/zego-uikit-prebuilt": "^2.6.2",
     "axios": "^1.7.3",
     "cors": "^2.8.5",
     "fs": "^0.0.1-security",
