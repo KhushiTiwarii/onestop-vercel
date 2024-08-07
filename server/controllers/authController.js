@@ -16,67 +16,67 @@ const generateToken = user=>{
     
 }
 
-export const register = async(req,res)=>{
-    const {email,password,role} = req.body
-
+export const register = async (req, res) => {
+    const { email, password, role, fullName, phoneNumber } = req.body;
+  
     try {
-        let user = null
-        if(role==='student'){
-            user = await Student.findOne({email})
-        }else if(role==='admin'){
-            user = await Admin.findOne({email})
-        }else if(role==='mentor'){
-            user = await Mentor.findOne({email})
-        }else if(role==='recruitor'){
-            user = await Recruitor.findOne({email})
-        }
-        //chk if user exist
-        if(user){
-            return res.status(400).json({message:"User already exist"})
-        }
-
-        //hash password
-        const salt = await bcrypt.genSalt(10)
-        const hashPassword = await bcrypt.hash(password,salt)
-
-        if(role==='student'){
-            user = new Student({
-                email,
-                password:hashPassword,
-                role
-            })
-        }
-        if(role==='admin'){
-            user = new Admin({
-                email,
-                password:hashPassword,
-                role
-            })
-        }
-        if(role==='mentor'){
-            user = new Mentor({
-                email,
-                password:hashPassword,
-                role
-            })
-        }
-        if(role==='recruitor'){
-            user = new Recruitor({
-                email,
-                password:hashPassword,
-                role
-            })
-        }
-
-        await user.save()
-
-        res.status(200).json({success:true,message:'User successfully created'})
-
-
+      let user = null;
+      if (role === 'student') {
+        user = await Student.findOne({ email });
+      } else if (role === 'admin') {
+        user = await Admin.findOne({ email });
+      } else if (role === 'mentor') {
+        user = await Mentor.findOne({ email });
+      } else if (role === 'recruitor') {
+        user = await Recruitor.findOne({ email });
+      }
+      // Check if user exists
+      if (user) {
+        return res.status(400).json({ message: 'User already exists' });
+      }
+  
+      // Hash password
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, salt);
+  
+      if (role === 'student') {
+        user = new Student({
+          email,
+          password: hashPassword,
+          role,
+          fullName,
+          phoneNumber
+        });
+      } else if (role === 'admin') {
+        user = new Admin({
+          email,
+          password: hashPassword,
+          role
+        });
+      } else if (role === 'mentor') {
+        user = new Mentor({
+          email,
+          password: hashPassword,
+          role
+        });
+      } else if (role === 'recruitor') {
+        user = new Recruitor({
+          email,
+          password: hashPassword,
+          role,
+          fullName,
+          phoneNumber
+        });
+      }
+  
+      await user.save();
+  
+      res.status(200).json({ success: true, message: 'User successfully created' });
     } catch (error) {
-        res.status(500).json({success:false,message:'Internal server error, Try again'})
+      res.status(500).json({ success: false, message: 'Internal server error, Try again' });
     }
-}
+  };
+  
 
 export const login = async(req,res) => {
     

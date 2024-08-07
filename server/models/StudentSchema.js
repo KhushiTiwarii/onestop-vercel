@@ -7,7 +7,9 @@ const studentSchema = new mongoose.Schema({
         type: String,
         enum: ["student", "admin"],
         default: "student",
-      },
-})
+    },
+    fullName: { type: String, required: true },
+    phoneNumber: { type: String, required: true }
+});
 
-export default mongoose.model("Student",studentSchema);
+export default mongoose.model("Student", studentSchema);
