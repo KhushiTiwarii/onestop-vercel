@@ -13,7 +13,7 @@ function Chatbot() {
   const [theme,setTheme] = useState("light");
   const [error,setError] = useState(null);
 
-  const API_KEY = 'AIzaSyCYHCNK5ruHOlrfgOhbicGofeSQtZTzyq4';
+  const API_KEY = 'AIzaSyA2_m4kLCwqWJGqkuU31QlmYY8dLj39eaA';
   const MODEL_NAME = 'gemini-1.0-pro-001';
 
   const genAI = new GoogleGenerativeAI(API_KEY);
@@ -82,11 +82,11 @@ function Chatbot() {
 
       if(chat){
         const input_prompt = `
-        If ${userInput} is informal like "hi"/"hello" etc ,respond like a general chatbot informally and greet back the user.Else,
-        Identify diseases based on the Symptoms given by the user through ${userInput} and also list medicines for the same.
-        If the user is asking general medical doubts like details of any medicine,etc through ${userInput} provide assistance for the same. 
-        Don't give * in response please.
-        Generate response in proper points on new line.
+        If ${userInput} is informal like "hi"/"hello" etc., respond informally and greet back the user. Otherwise,
+
+Provide information on training programs based on the ${userInput}.
+
+Identify relevant training courses or certifications based on the user's interests or career goals given in the ${userInput}
         
         `;
         const result = await chat.sendMessage(input_prompt);

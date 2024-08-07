@@ -4,16 +4,17 @@ import { getDocument } from 'pdfjs-dist/webpack';
 import Sidebar from '../../components/SideBar';
 import { MdDescription, MdAttachFile, MdSend } from 'react-icons/md';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import Bot from './ChatBot/Bot';
 
 const AtsScanner = () => {
   const [jd, setJd] = useState('');
   const [resumeText, setResumeText] = useState('');
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [chat, setChat] = useState(null);
 
-  const API_KEY = 'AIzaSyCYHCNK5ruHOlrfgOhbicGofeSQtZTzyq4';
+  const API_KEY = 'AIzaSyA2_m4kLCwqWJGqkuU31QlmYY8dLj39eaA';
   const MODEL_NAME = 'gemini-1.0-pro-001';
   const genAI = new GoogleGenerativeAI(API_KEY);
 
@@ -107,13 +108,70 @@ const AtsScanner = () => {
           Don't print Resume and Job Description
         `;
         const result = await chat.sendMessage(inputPrompt);
-        const result_text = result.response.text();
+        const result_text = await result.response.text();
         console.log(result_text);
-        setResult(result_text);
+        const parsedResult = parseResult(result_text);
+        setResult(parsedResult);
       }
     } catch (error) {
       setError("Failed to send message. Please try again.");
     }
+  };
+
+  const parseResult = (text) => {
+    const result = {
+      percentageMatch: 'N/A',
+      missingKeywords: 'N/A',
+      finalThoughts: 'N/A',
+    };
+
+    const percentageMatch = text.match(/Percentage of Match:\s*([^\n]+)/);
+    if (percentageMatch) {
+      result.percentageMatch = percentageMatch[1].trim();
+    }
+
+    const missingKeywords = text.match(/Keywords Missing:\s*([\s\S]*?)(?=\*\*)/);
+    if (missingKeywords) {
+      result.missingKeywords = missingKeywords[1].trim() || 'None';
+    }
+
+    const finalThoughts = text.match(/Final Thoughts:\s*([\s\S]*)/);
+    if (finalThoughts) {
+      result.finalThoughts = finalThoughts[1].trim();
+    }
+
+    return result;
+  };
+
+  const renderTable = () => {
+    if (!result) return null;
+
+    return (
+      <div className="result-table mt-4">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="bg-purple-200">
+              <th className="border p-2 font-semibold">Aspect</th>
+              <th className="border p-2 font-semibold">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="border p-2 font-bold">Percentage of Match:</td>
+              <td className="border p-2">{result.percentageMatch}</td>
+            </tr>
+            <tr>
+              <td className="border p-2 font-bold">Keywords Missing:</td>
+              <td className="border p-2">{result.missingKeywords}</td>
+            </tr>
+            <tr>
+              <td className="border p-2 font-bold">Final Thoughts:</td>
+              <td className="border p-2">{result.finalThoughts}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
   };
 
   const handleFileUpload = async (e) => {
@@ -176,11 +234,10 @@ const AtsScanner = () => {
           
           {loading && <p className="text-center text-gray-500 mt-4"><AiOutlineLoading3Quarters className="animate-spin inline-block mr-2" /> Loading...</p>}
           {error && <p className="text-center text-red-500 mt-4">{error}</p>}
-          {result && <div className="result text-gray-700 rounded-lg border border-gray-300 p-4 mt-4">
-            {result}
-          </div>}
+          {result && renderTable()}
         </div>
       </div>
+<Bot/>
     </div>
   );
 };
