@@ -14,7 +14,7 @@ import { authContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
 const routes = [
-  { label: "DASHBOARD", icon: LayoutDashboard, path: "/", color: "text-white-500" },
+  { label: "DASHBOARD", icon: LayoutDashboard, path: "/dashboard", color: "text-white-500" },
   { label: "AI Resume Scanner", icon: FileIcon, path: "/ats", color: "text-green-600" },
   { label: "Placement Resources", icon: BookIcon, path: "/playlist", color: "text-red-500" },
   { label: "Interview Preparation", icon: SearchIcon, path: "/interview-prep", color: "text-yellow-300" },

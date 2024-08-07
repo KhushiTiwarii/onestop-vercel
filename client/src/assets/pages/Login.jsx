@@ -50,7 +50,7 @@ const Login = () => {
       })
 
       if (result.role === 'student') {
-        navigate('/home');
+        navigate('/dashboard');
     } 
     if (result.role === 'recruitor') {
         navigate('/recruitor');

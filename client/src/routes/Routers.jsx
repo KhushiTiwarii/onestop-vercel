@@ -14,19 +14,19 @@ import PlaylistContent from '../assets/pages/youtube/PlayListContent'
 import InterviewPrep from '../assets/pages/InterviewPrep'
 import PlacementResources from '../assets/pages/PlacementResources'
 import JobSearch from '../assets/pages/JobSearch'
-import Landing from '../components/Landing'
 import AddJob from '../assets/pages/AddJobForm'
 import Lobby from '../assets/pages/mockinterview/Lobby'
 import Room from '../assets/pages/mockinterview/Room'
 import LandingPage from '../assets/pages/landing/Landingpage'
 import AptitudeTest from '../assets/pages/mockinterview/AptitudeTest'
+import Dashboard from '../assets/pages/Dashboard'
 
 
 const Routers = () => {
   return (
     <Routes>
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/home' element={<Landing/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/student' element={<ProtectedRoutes allowedRoles={["student"]}><DashBoard/></ProtectedRoutes>}/>
