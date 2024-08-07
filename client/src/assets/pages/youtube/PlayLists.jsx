@@ -4,7 +4,7 @@ import Sidebar from '../../../components/SideBar';
 import { FiPlayCircle } from 'react-icons/fi';
 
 const playlists = [
-  // DSA
+  // DSA (Data Structures and Algorithms)
   {
     title: 'Strivers DSA Playlist',
     no: 1,
@@ -18,9 +18,9 @@ const playlists = [
     category: 'DSA',
   },
   {
-    title: 'DSA Course in C++ - CodeWithHarry',
+    title: 'DSA Course in Java - Kunal Kushwaha',
     no: 3,
-    id: 'PLu0W_9lII9agrsyeN3YaT6YccOgvZq0LX',
+    id: 'PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ',
     category: 'DSA',
   },
   {
@@ -30,108 +30,134 @@ const playlists = [
     category: 'DSA',
   },
 
-  // Web Development
-  {
-    title: 'ReactJS Tutorial for Beginners - TechWithTim',
-    no: 5,
-    id: 'PLzMcBGfZo4-kR4QKS0z-Ium3sPKGEkIO1',
-    category: 'Web Development',
-  },
-  {
-    title: 'Full Stack Web Development - freeCodeCamp',
-    no: 6,
-    id: 'PLWKjhJtqVAbnupwRFOq9GmE3ab4epDRtD',
-    category: 'Web Development',
-  },
-  {
-    title: 'HTML & CSS Crash Course - Academind',
-    no: 7,
-    id: 'PLpzy7FIRqpGD0kxI48v8QEVVZd744Phi4',
-    category: 'Web Development',
-  },
-  {
-    title: 'JavaScript Full Course - Programming with Mosh',
-    no: 8,
-    id: 'PLTjRvDozrdlxm-H8XcR1xqS-wxg8N2MWz',
-    category: 'Web Development',
-  },
-
-  // App Development
-  {
-    title: 'Flutter Tutorial for Beginners - The Net Ninja',
-    no: 9,
-    id: 'PL4cUxeGkcC9gFdpX5tGUb5bJ7X0IcfNht',
-    category: 'App Development',
-  },
-  {
-    title: 'Android Development for Beginners - CodeWithChris',
-    no: 10,
-    id: 'PLT6Dbk2RIv32GLgX3J7EwulIEQoEZYU2W',
-    category: 'App Development',
-  },
-  {
-    title: 'iOS Development with Swift - Traversy Media',
-    no: 11,
-    id: 'PLillGF-RfqbbiTGgA77tGO426V3hRF9iE',
-    category: 'App Development',
-  },
-  {
-    title: 'React Native Crash Course - Academind',
-    no: 12,
-    id: 'PLpzy7FIRqpGD0kxI48v8QEVVZd744Phi4',
-    category: 'App Development',
-  },
-
   // Web3
   {
+    title: 'Intro to Web3 Course',
+    no: 5,
+    id: 'PLuPvKxJFzkLEFEJTm7DAIsmOUox-61tV0',
+    category: 'Web3',
+  },
+  {
     title: 'Blockchain Development - Dapp University',
-    no: 13,
-    id: 'PLS5SEs8ZftgUtPOlQD0V6sfxrT4_2RrYE',
+    no: 6,
+    id: 'PL5dTjWUk_cPbviyfuJiBNnvguVboDAIgT',
     category: 'Web3',
   },
   {
-    title: 'Ethereum & Solidity - freeCodeCamp',
-    no: 14,
-    id: 'PLWKjhJtqVAblv09GtABbJOeEoLhWbKTe5',
+    title: 'Coding a Decentralised Exchange in Node.js',
+    no: 7,
+    id: 'PLVKLWop9wWA9n9NQZ2GURoB_a1gOezN_e',
     category: 'Web3',
   },
   {
-    title: 'Building DApps with Ethereum and IPFS',
-    no: 15,
-    id: 'PLFZf7UYLqAKPGr8nKgtZRzVfuq3xD4fXN',
-    category: 'Web3',
-  },
-  {
-    title: 'Solidity Tutorial - Smart Contract Development',
-    no: 16,
-    id: 'PLS5SEs8ZftgUtPOlQD0V6sfxrT4_2RrYE',
+    title: 'Code Your Own Cryptocurrency - Dapp University',
+    no: 8,
+    id: 'PLS5SEs8ZftgWFuKg2wbm_0GLV0Tiy1R-n',
     category: 'Web3',
   },
 
   // Design
+
+  
   {
-    title: 'UI/UX Design Tutorial - Envato Tuts+',
+    title: 'Photoshop for Beginners: Complete Course',
+    no: 9,
+    id: 'PLLlSBGLVsEPIFGSGw2zJ2K43V5vxMMMTE',
+    category: 'Design',
+    playlistTopic: 'Photoshop for Beginners: Complete Course',
+    channelName: 'YouTube Channel Name'
+  },
+  {
+    title: 'Figma Tutorials',
+    no: 10,
+    id: 'PLcfaF9xpcRDDPkDhwb1lEZkDUHKklfipL',
+    category: 'Design',
+    playlistTopic: 'Figma Tutorials',
+    channelName: 'YouTube Channel Name'
+  },
+  {
+    title: 'UI Design Tutorials',
+    no: 11,
+    id: 'PLERed4ILxkJ2dCoBhBXZrbVP5eGwSy1lb',
+    category: 'Design',
+    playlistTopic: 'UI Design Tutorials',
+    channelName: 'YouTube Channel Name'
+  },
+  {
+    title: 'Pro Logo Design',
+    no: 12,
+    id: 'PLYfCBK8IplO6eQSxf_9rhEXQhAHwOujcY',
+    category: 'Design',
+    playlistTopic: 'Pro Logo Design',
+    channelName: 'YouTube Channel Name'
+  },
+
+
+  // App Development
+  {
+    title: 'Android App Development Course in 2024 | Saumya Singh',
+    no: 13,
+    id: 'PL6Q9UqV2Sf1gHCHOKYLDofElSvxtRRXOR',
+    category: 'App Development',
+    playlistTopic: 'Android App Development Course in 2024',
+    channelName: 'Saumya Singh'
+  },
+  {
+    title: 'Android Development Tutorials in Hindi',
+    no: 14,
+    id: 'PLTV_nsuD2lf4UCTV6xwvNPvFdmCNKyhc8',
+    category: 'App Development',
+    playlistTopic: 'Android Development Tutorials in Hindi',
+    channelName: 'YouTube Channel Name'
+  },
+  {
+    title: 'Android Development Tutorials in Hindi',
+    no: 15,
+    id: 'PLu0W_9lII9aiL0kysYlfSOUgY5rNlOhUd',
+    category: 'App Development',
+    playlistTopic: 'Android Development Tutorials in Hindi',
+    channelName: 'YouTube Channel Name'
+  },
+  {
+    title: 'Flutter Tutorial for Beginners',
+    no: 16,
+    id: 'PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ',
+    category: 'App Development',
+    playlistTopic: 'Flutter Tutorial for Beginners',
+    channelName: 'YouTube Channel Name'
+  },
+  // Web Development
+  {
+    title: 'HTML, CSS, JavaScript, Project, Git & GitHub',
     no: 17,
-    id: 'PLD8nQCAhR3tRDw5m91on96DH2sq6lKI9B',
-    category: 'Design',
+    id: 'PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i',
+    category: 'Web Development',
+    playlistTopic: 'HTML, CSS, JavaScript, Project, Git & GitHub',
+    channelName: 'YouTube Channel Name'
   },
   {
-    title: 'Adobe XD for Beginners - DesignCourse',
+    title: 'Complete Web Dev using MERN stack || Love Babbar',
     no: 18,
-    id: 'PL2SpUuhyN2NR9sPtZISx5HSTlQe-TvUMs',
-    category: 'Design',
+    id: 'PLDzeHZWIZsTo0wSBcg4-NMIbC0L8evLrD',
+    category: 'Web Development',
+    playlistTopic: 'Complete Web Dev using MERN stack',
+    channelName: 'Love Babbar'
   },
   {
-    title: 'Figma Tutorial for Beginners - The Net Ninja',
+    title: 'Web Development Course',
     no: 19,
-    id: 'PL4cUxeGkcC9jBcyZRQCZg1fq39Tx3x93M',
-    category: 'Design',
+    id: 'PLfqMhTWNBTe3H6c9OGXb5_6wcc1Mca52n',
+    category: 'Web Development',
+    playlistTopic: 'Web Development Course',
+    channelName: 'YouTube Channel Name'
   },
   {
-    title: 'Graphic Design Basics - freeCodeCamp',
+    title: 'Sigma Web Development Course - Web Development Tutorials in Hindi 🗿',
     no: 20,
-    id: 'PLWKjhJtqVAbkFiqHnNaxpOPhh9tSWMXIF',
-    category: 'Design',
+    id: 'PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w',
+    category: 'Web Development',
+    playlistTopic: 'Sigma Web Development Course',
+    channelName: 'YouTube Channel Name'
   },
 ];
 
