@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from '../../config.js';
 import SidebarRec from '../../components/SideBarRec';
 import { FaTrash } from 'react-icons/fa';
+import Bot from './ChatBot/Bot.jsx';
 
 const skillsOptions = [
   'JavaScript', 'React', 'Node.js', 'Python', 'Java', 'C++', 'C#', 'Ruby', 'PHP', 'HTML', 'CSS', 'TypeScript', 
@@ -285,6 +286,7 @@ const AddJobForm = () => {
           </div>
         </div>
       </div>
+      <Bot/>
     </div>
   );
 };

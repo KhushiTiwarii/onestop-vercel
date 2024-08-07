@@ -21,6 +21,7 @@ import LandingPage from '../assets/pages/landing/Landingpage'
 import AptitudeTest from '../assets/pages/mockinterview/AptitudeTest'
 import StudentDashboard from '../assets/pages/dashboard/StudentDashBoard'
 import Dashboard from '../assets/pages/Dashboard'
+import Applications from '../assets/pages/Applications'
 
 const Routers = () => {
   return (
@@ -32,7 +33,7 @@ const Routers = () => {
         <Route path='/jobs/myapplied' element={<ProtectedRoutes allowedRoles={["student"]}><StudentDashboard/></ProtectedRoutes>}/>
         <Route path='/admin' element={<ProtectedRoutes allowedRoles={["admin"]}><Admin/></ProtectedRoutes>}/>
         <Route path='/mentor' element={<ProtectedRoutes allowedRoles={["mentor"]}><Mentor/></ProtectedRoutes>}/>
-        <Route path='/recruitor' element={<ProtectedRoutes allowedRoles={["recruitor"]}><Recruitor/></ProtectedRoutes>}/>
+        <Route path='/recruitor' element={<ProtectedRoutes allowedRoles={["recruitor"]}><Applications/></ProtectedRoutes>}/>
         <Route path="/ats" element={<AtsScanner />} />
           <Route path="/interview-prep" element={<InterviewPrep />} />
           <Route path="/room" element={<Lobby />} />
