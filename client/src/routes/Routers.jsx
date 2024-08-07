@@ -19,6 +19,8 @@ import AddJob from '../assets/pages/AddJobForm'
 import Lobby from '../assets/pages/mockinterview/Lobby'
 import Room from '../assets/pages/mockinterview/Room'
 import LandingPage from '../assets/pages/landing/Landingpage'
+import AptitudeTest from '../assets/pages/mockinterview/AptitudeTest'
+
 
 const Routers = () => {
   return (
@@ -40,6 +42,8 @@ const Routers = () => {
           <Route path="/playlist" element={<PlayLists />} />
           <Route path="/playlist/:id" element={<PlaylistContent />} />
           <Route path="/add-job" element={<AddJob />} />
+          <Route path="/AptitudeTest" element={<AptitudeTest />} />
+
     </Routes>
   )
 }

@@ -11,13 +11,15 @@ const InterviewPrep = () => {
     setActiveButton(buttonName);
     if (buttonName === "MockInterview") {
       navigate('/room');
+    } else if (buttonName === "AptitudeTest") {
+      navigate('/AptitudeTest');
     }
   };
 
   return (
     <div className="flex h-screen bg-gradient-to-r from-purple-50 to-purple-100">
       <Sidebar />
-      <div className="flex flex-col p-8 w-full">
+      <div className="flex-1 flex-col p-8 w-full">
         <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
           How would you like to prepare for the Interview?
         </h1>
