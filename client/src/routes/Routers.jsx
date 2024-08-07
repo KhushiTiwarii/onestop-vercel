@@ -18,11 +18,12 @@ import Landing from '../components/Landing'
 import AddJob from '../assets/pages/AddJobForm'
 import Lobby from '../assets/pages/mockinterview/Lobby'
 import Room from '../assets/pages/mockinterview/Room'
+import LandingPage from '../assets/pages/landing/Landingpage'
 
 const Routers = () => {
   return (
     <Routes>
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<LandingPage/>}/>
         <Route path='/home' element={<Landing/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
@@ -34,7 +35,7 @@ const Routers = () => {
           <Route path="/interview-prep" element={<InterviewPrep />} />
           <Route path="/room" element={<Lobby />} />
           <Route path="/room/:roomId" element={<Room />} />
-          <Route pasth="/resources" element={<PlacementResources />} />
+          <Route path="/resources" element={<PlacementResources />} />
           <Route path="/jobs" element={<JobSearch />} />
           <Route path="/playlist" element={<PlayLists />} />
           <Route path="/playlist/:id" element={<PlaylistContent />} />
