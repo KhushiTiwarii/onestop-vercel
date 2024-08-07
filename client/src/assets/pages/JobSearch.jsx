@@ -34,7 +34,7 @@ const JobSearch = () => {
   );
 
   return (
-    <div className="flex h-screen bg-gray-100" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <div className="flex h-screen bg-gray-100" >
       <Sidebar />
       <div className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-6 text-center">Job Search</h1>
