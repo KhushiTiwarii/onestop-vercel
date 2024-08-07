@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { LayoutDashboard, Briefcase as BriefcaseIcon, Menu as MenuIcon, X as CloseIcon, LogOut as LogOutIcon } from 'lucide-react';
+import { LayoutDashboard, Briefcase as BriefcaseIcon, Menu as MenuIcon, X as CloseIcon, LogOut as LogOutIcon, FileText as DocumentIcon } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
 const routes = [
   { label: "DASHBOARD", icon: LayoutDashboard, path: "/", color: "text-white-500" },
-  { label: "Add Job", icon: BriefcaseIcon, path: "/add-job", color: "text-blue-200" }
+  { label: "Add Job", icon: BriefcaseIcon, path: "/add-job", color: "text-blue-200" },
+  { label: "Applications", icon: DocumentIcon, path: "/applications", color: "text-blue-200" }
 ];
 
 const SidebarRec = () => {
@@ -45,13 +46,13 @@ const SidebarRec = () => {
         ))}
       </div>
       <div className="px-3 py-3 mt-auto">
-        <button
-          onClick={handleLogout}
-          className="flex items-center p-4 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors duration-300 text-white w-full"
-        >
-          <LogOutIcon size={isExpanded ? 36 : 24} className={`${isExpanded ? 'mr-3' : ''}`} />
-          {isExpanded && <span>Logout</span>}
-        </button>
+      <button
+      onClick={handleLogout}
+      className="flex items-center p-4 rounded-md border-2 border-purple-600 bg-white hover:bg-purple-600 transition-colors duration-300 text-purple-600 hover:text-white w-full shadow-md hover:shadow-lg font-semibold"
+      >
+      <LogOutIcon size={isExpanded ? 36 : 24} className={`${isExpanded ? 'mr-3' : ''}`} />
+      {isExpanded && <span className="text-lg">Logout</span>}
+      </button>
       </div>
     </div>
   );

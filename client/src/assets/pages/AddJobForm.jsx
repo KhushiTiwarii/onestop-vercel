@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../config.js'
+import SidebarRec from '../../components/SideBarRec'
 
 const skillsOptions = [
   'JavaScript', 'React', 'Node.js', 'Python', 'Java', 'C++', 'C#', 'Ruby', 'PHP', 'HTML', 'CSS', 'TypeScript', 
@@ -33,9 +37,6 @@ const AddJobForm = () => {
     salary: ''
   });
 
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -55,18 +56,26 @@ const AddJobForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Log the form data to check if all values are coming in
+    console.log('Form Data:', formData);
+  
     try {
-      const response = await fetch('/api/v1/jobs', {
+      const response = await fetch(`${BASE_URL}/jobs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
+  
       const result = await response.json();
+  
+      // Log the response to check what the server returns
+      console.log('Response:', result);
+  
       if (response.ok) {
-        setSuccessMessage('Job added successfully!');
-        setErrorMessage('');
+        toast.success('Job added successfully!');
         // Clear form data
         setFormData({
           company: '',
@@ -78,17 +87,21 @@ const AddJobForm = () => {
           salary: ''
         });
       } else {
-        setSuccessMessage('');
-        setErrorMessage(result.message || 'Failed to add job.');
+        toast.error(result.message || 'Failed to add job.');
       }
     } catch (error) {
-      setSuccessMessage('');
-      setErrorMessage('An error occurred while adding the job.');
+      // Log the error to check what went wrong
+      console.error('Error:', error);
+      toast.error('An error occurred while adding the job.');
     }
-  };
+  };  
 
   return (
+    <div className="flex h-screen">
+      <SidebarRec />
+      <div className="flex-1 p-8 bg-gray-50">
     <div className="max-w-4xl mx-auto mt-8">
+      <ToastContainer />
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Add Job</h2>
 
@@ -188,15 +201,9 @@ const AddJobForm = () => {
         >
           Add Job
         </button>
-
-        {successMessage && (
-          <p className="mt-4 text-green-600 font-semibold text-center">{successMessage}</p>
-        )}
-
-        {errorMessage && (
-          <p className="mt-4 text-red-600 font-semibold text-center">{errorMessage}</p>
-        )}
       </form>
+    </div>
+    </div>
     </div>
   );
 };

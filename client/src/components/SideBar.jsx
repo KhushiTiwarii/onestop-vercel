@@ -57,13 +57,13 @@ const Sidebar = () => {
         ))}
       </div>
       <div className="px-3 py-3 mt-auto">
-        <button
-          onClick={handleLogout}
-          className="flex items-center p-4 rounded-md bg-gray-800 hover:bg-gray-700 transition-colors duration-300 text-white w-full"
-        >
-          <LogOutIcon size={isExpanded ? 36 : 24} className={`${isExpanded ? 'mr-3' : ''}`} />
-          {isExpanded && <span>Logout</span>}
-        </button>
+      <button
+      onClick={handleLogout}
+      className="flex items-center p-4 rounded-md border-2 border-purple-600 bg-white hover:bg-purple-600 transition-colors duration-300 text-purple-600 hover:text-white w-full shadow-md hover:shadow-lg font-semibold"
+      >
+      <LogOutIcon size={isExpanded ? 36 : 24} className={`${isExpanded ? 'mr-3' : ''}`} />
+      {isExpanded && <span className="text-lg">Logout</span>}
+      </button>
       </div>
     </div>
   );
