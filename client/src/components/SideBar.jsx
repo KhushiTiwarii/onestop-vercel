@@ -38,20 +38,21 @@ const Sidebar = () => {
 
   return (
     <div className={`flex flex-col h-full bg-purple-950 ${isExpanded ? 'w-72' : 'w-20'} transition-width duration-300`}>
-      <div className="flex items-center justify-between px-3 py-3">
+      <div className={`${isExpanded ? 'flex items-center justify-between px-3 py-3' : 'flex flex-col-reverse items-center justify-between mt-4 gap-2'}`}>
         {isExpanded && <span className="text-white text-xl"></span>}
+        <img 
+          src="/logo-1.png"
+          alt="Logo" 
+          className={`${isExpanded ? 'w-32 pt-2' : 'w-12 mt-2'} transition-all duration-300 object-contain`}
+        />
         <button onClick={toggleSidebar} className="text-white">
           {isExpanded ? <CloseIcon size={24} /> : <MenuIcon size={24} />}
         </button>
       </div>
-      <div className="flex justify-center items-center p-0">
-        <img 
-          src="/logo-1.png"
-          alt="Logo" 
-          className={`${isExpanded ? 'w-32' : 'w-12'} transition-all duration-300 object-contain`}
-        />
+      <div className="flex justify-center items-center p-0 mt-4">
+        
       </div>
-      <div className="px-4 py- flex-1 space-y-4">
+      <div className="px-4 py-4 flex-1 space-y-4 mt-4">
         {routes.map((route) => (
           <Link to={route.path} key={route.path} className="block">
             <div
@@ -63,10 +64,10 @@ const Sidebar = () => {
           </Link>
         ))}
       </div>
-      <div className="px-16 flex items-center py-4">
+      <div className={`flex items-center ${isExpanded ? 'px-16' : 'px-3'} py-4`}>
         <button
           onClick={handleLogout}
-          className={`flex items-center px-4 pt-3 pb-3 mb-8 rounded-md bg-white text-white backdrop-blur-md bg-opacity-20 shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl ${!isExpanded ? 'justify-center' : 'space-x-3'}`}
+          className={`flex items-center p-4 rounded-md bg-white text-white backdrop-blur-md bg-opacity-20 shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl ${!isExpanded ? 'justify-center' : 'space-x-3'}`}
         >
           <LogOutIcon className="text-red-500" size={isExpanded ? 36 : 24} />
           {isExpanded && <span className="text-white">Logout</span>}

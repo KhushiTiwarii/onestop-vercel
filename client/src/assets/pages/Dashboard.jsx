@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../../components/SideBar';
 import { Card, CardContent, Typography, Avatar } from '@mui/material';
+import Bot from './ChatBot/Bot';
 
 const styles = {
   container: {
@@ -132,6 +133,7 @@ const Dashboard = () => {
           ))}
         </div>
       </div>
+      <Bot/>
     </div>
   );
 };

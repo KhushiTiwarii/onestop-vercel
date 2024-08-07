@@ -5,9 +5,8 @@ import { authContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 
 const routes = [
-  { label: "DASHBOARD", icon: LayoutDashboard, path: "/", color: "text-white-500" },
   { label: "Add Job", icon: BriefcaseIcon, path: "/add-job", color: "text-blue-200" },
-  { label: "Applications", icon: DocumentIcon, path: "/applications", color: "text-blue-200" }
+  { label: "Applications", icon: DocumentIcon, path: "/recruitor", color: "text-blue-200" }
 ];
 
 const SidebarRec = () => {
@@ -28,12 +27,18 @@ const SidebarRec = () => {
   return (
     <div className={`flex flex-col h-full bg-purple-950 ${isExpanded ? 'w-64' : 'w-20'} transition-width duration-300`}>
       <div className="flex items-center justify-between px-3 py-3">
-        {isExpanded && <span className="text-white text-xl">Logo</span>}
         <button onClick={toggleSidebar} className="text-white">
           {isExpanded ? <CloseIcon size={24} /> : <MenuIcon size={24} />}
         </button>
       </div>
-      <div className="px-3 py-9 flex-1 space-y-4">
+      <div className="flex justify-center items-center p-0 mt-4">
+        <img 
+          src="/logo-1.png"
+          alt="Logo" 
+          className={`${isExpanded ? 'w-32' : 'w-12'} transition-all duration-300 object-contain`}
+        />
+      </div>
+      <div className="px-3 py-4 flex-1 space-y-4 mt-4">
         {routes.map((route) => (
           <Link to={route.path} key={route.path} className="block">
             <div
@@ -46,13 +51,13 @@ const SidebarRec = () => {
         ))}
       </div>
       <div className="px-3 py-3 mt-auto">
-      <button
-      onClick={handleLogout}
-      className="flex items-center p-4 rounded-md border-2 border-purple-600 bg-white hover:bg-purple-600 transition-colors duration-300 text-purple-600 hover:text-white w-full shadow-md hover:shadow-lg font-semibold"
-      >
-      <LogOutIcon size={isExpanded ? 36 : 24} className={`${isExpanded ? 'mr-3' : ''}`} />
-      {isExpanded && <span className="text-lg">Logout</span>}
-      </button>
+        <button
+          onClick={handleLogout}
+          className="flex items-center p-4 rounded-md border-2 border-purple-600 bg-white hover:bg-purple-600 transition-colors duration-300 text-purple-600 hover:text-white w-full shadow-md hover:shadow-lg font-semibold"
+        >
+          <LogOutIcon size={isExpanded ? 36 : 24} className={`${isExpanded ? 'mr-3' : ''}`} />
+          {isExpanded && <span className="text-lg">Logout</span>}
+        </button>
       </div>
     </div>
   );

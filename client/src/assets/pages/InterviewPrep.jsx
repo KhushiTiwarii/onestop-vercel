@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../../components/SideBar';
 import { useNavigate } from 'react-router-dom';
 import { FaBrain, FaMicrophoneAlt } from 'react-icons/fa';
+import Bot from './ChatBot/Bot';
 
 const InterviewPrep = () => {
   const [activeButton, setActiveButton] = useState(null);
@@ -74,6 +75,7 @@ const InterviewPrep = () => {
           </div>
         </div>
       </div>
+      <Bot/>
     </div>
   );
 };

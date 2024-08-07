@@ -112,7 +112,7 @@ function Chatbot() {
   };
 
   return (
-    <div className={`flex flex-col fixed bottom-28 right-10 h-[70vh] w-[18.5rem] p-4 shadow-md shadow-white z-40 bg-white rounded-t-lg rounded-r-lg md:left-20`}>
+    <div className={`flex flex-col fixed bottom-28 right-5 h-[70vh] w-[18.5rem] p-4 shadow-md shadow-purple-500 z-40 bg-white rounded-t-lg rounded-r-lg md:right-20`}>
     <div className="flex justify-between items-center mb-4">
        <h1 className={`text-2xl font-bold text-dark_theme`}>OneStop Bot</h1>
     </div>
@@ -143,7 +143,7 @@ function Chatbot() {
        />
        <button
        onClick={handleSendMessage}
-       className={`p-2 text-sm bg-primaryColor text-white rounded-r-md hover:bg-opacity-80 focus:outline-none`}
+       className={`p-2 text-sm bg-purple-500 text-white rounded-r-md hover:bg-opacity-80 focus:outline-none`}
        >
        Send
        </button>
