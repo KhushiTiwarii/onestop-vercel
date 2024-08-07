@@ -3,24 +3,38 @@ import Sidebar from '../../components/SideBar';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Building, MapPin, Calendar, DollarSign, Badge, CheckCircle } from 'lucide-react';
+import uploadFileToCloudinary from '../../utils/uploadCloudinary';
 
 const JobSearch = () => {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    resume: null,
+    jobId: '',
+    jobTitle: ''
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [resumeURL, setResumeURL] = useState('');
   const BASE_URL = 'http://localhost:8000/api/v1'; // Update this to your actual base URL
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const response = await fetch(`${BASE_URL}/jobs`);
-        const result = await response.json();
-        if (response.ok) {
-          setJobs(result);
-        } else {
-          toast.error(result.message || 'Failed to fetch jobs.');
+        if (!response.ok) {
+          throw new Error('Failed to fetch jobs.');
         }
+        const result = await response.json();
+        setJobs(result);
       } catch (error) {
-        toast.error('An error occurred while fetching jobs.');
+        setError(error.message || 'An error occurred while fetching jobs.');
+        toast.error(error.message || 'An error occurred while fetching jobs.');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -33,10 +47,77 @@ const JobSearch = () => {
     job.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleApplyClick = (job) => {
+    setSelectedJob(job);
+    setFormData(prevState => ({
+      ...prevState,
+      jobId: job._id,
+      jobTitle: job.position
+    }));
+  };
+
+  const handleChange = async (e) => {
+    const { name, value, type, files } = e.target;
+    if (type === 'file') {
+        const file = files[0];
+        const data = await uploadFileToCloudinary(file); // Updated function
+        setResumeURL(data.url);
+        console.log("Resume URL:", data.url); // Print the URL to the console
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: data.url
+        }));
+    } else {
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const formDataToSend = {
+      name: formData.name,
+      phone: formData.phone,
+      resume: resumeURL, // Use resumeURL directly
+      jobId: formData.jobId,
+      jobTitle: formData.jobTitle
+    };
+  
+    console.log('Form data to send:', formDataToSend);
+  
+    try {
+      const response = await fetch(`${BASE_URL}/apply`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', // Set content type to JSON
+        },
+        body: JSON.stringify(formDataToSend), // Send JSON string
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to submit application.');
+      }
+  
+      toast.success('Application submitted successfully!');
+      setFormData({ name: '', phone: '', resume: null, jobId: '', jobTitle: '' });
+      setSelectedJob(null);
+    } catch (error) {
+      toast.error(error.message || 'An error occurred while submitting the application.');
+    }
+  };
+  
+
+  if (loading) return <div className="flex h-screen items-center justify-center">Loading...</div>;
+  if (error) return <div className="flex h-screen items-center justify-center text-red-500">{error}</div>;
+
   return (
-    <div className="flex h-screen bg-gray-100" >
+    <div className="flex h-screen bg-gray-100">
       <Sidebar />
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-8 overflow-auto">
         <h1 className="text-3xl font-bold mb-6 text-center">Job Search</h1>
         <div className="relative mb-6">
           <input
@@ -64,7 +145,10 @@ const JobSearch = () => {
             {filteredJobs.slice(0, 12).map((job) => (
               <div key={job._id} className="relative bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col">
                 <div className="absolute top-4 right-4">
-                  <button className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors duration-300 ease-in-out">
+                  <button
+                    onClick={() => handleApplyClick(job)}
+                    className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors duration-300 ease-in-out"
+                  >
                     Apply
                   </button>
                 </div>
@@ -101,6 +185,71 @@ const JobSearch = () => {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+        {selectedJob && (
+          <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm">
+              <h2 className="text-xl font-bold mb-4">Apply for {selectedJob.position}</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Name:</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="border border-gray-300 rounded px-4 py-2 w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Phone:</label>
+                  <input
+                    type="text"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="border border-gray-300 rounded px-4 py-2 w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Resume:</label>
+                  <input
+                    type="file"
+                    name="resume"
+                    onChange={handleChange}
+                    className="border border-gray-300 rounded px-4 py-2 w-full"
+                    required
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700">Job Title:</label>
+                  <input
+                    type="text"
+                    name="jobTitle"
+                    value={formData.jobTitle}
+                    readOnly
+                    className="border border-gray-300 rounded px-4 py-2 w-full"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+                >
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedJob(null)}
+                  className="ml-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
           </div>
         )}
       </div>

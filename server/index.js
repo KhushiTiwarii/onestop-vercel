@@ -5,44 +5,49 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth.js";
 import jobRouter from "./routes/jobs.js";
+import jobApplicationRouter from "./routes/jobapplication.js";
 
 dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 8000
 
-// cors
+
+
+// CORS options
 const corsOptions = {
-    origin:true
+    origin: true
 }
 
-app.get('/',(req,res)=>{
-    res.send("Api is working")
+app.get('/', (req, res) => {
+    res.send("API is working")
 })
 
-// db 
-mongoose.set("strictQuery",false)
-const connectDB = async()=>{
+// DB connection
+mongoose.set("strictQuery", false)
+const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI,{
-            useNewUrlParser:true,
-            useUnifiedTopology:true,
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
         })
-        console.log("MongoDb database is connected");
+        console.log("MongoDB database is connected");
     } catch (error) {
-        console.log("MongoDb database connection failed");
+        console.log("MongoDB database connection failed");
     }
 }
 
-// middleware
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.use('/api/v1/auth',authRouter);
-app.use('/api/v1/jobs',jobRouter)
 
-app.listen(port,()=>{
+// Routes
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/apply', jobApplicationRouter);
+
+app.listen(port, () => {
     connectDB();
-    console.log("Server is running on port "+port);
+    console.log("Server is running on port " + port);
 })
-
