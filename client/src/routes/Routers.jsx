@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import DashBoard from '../assets/pages/dashboard/DashBoard'
+// import DashBoard from '../assets/pages/dashboard/DashBoard'
 import ProtectedRoutes from './ProtectedRoutes'
 import Signup from '../assets/pages/Signup'
 import Admin from '../assets/pages/Admin'
@@ -19,8 +19,8 @@ import Lobby from '../assets/pages/mockinterview/Lobby'
 import Room from '../assets/pages/mockinterview/Room'
 import LandingPage from '../assets/pages/landing/Landingpage'
 import AptitudeTest from '../assets/pages/mockinterview/AptitudeTest'
+import StudentDashboard from '../assets/pages/dashboard/StudentDashBoard'
 import Dashboard from '../assets/pages/Dashboard'
-
 
 const Routers = () => {
   return (
@@ -29,7 +29,7 @@ const Routers = () => {
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
-        <Route path='/student' element={<ProtectedRoutes allowedRoles={["student"]}><DashBoard/></ProtectedRoutes>}/>
+        <Route path='/jobs/myapplied' element={<ProtectedRoutes allowedRoles={["student"]}><StudentDashboard/></ProtectedRoutes>}/>
         <Route path='/admin' element={<ProtectedRoutes allowedRoles={["admin"]}><Admin/></ProtectedRoutes>}/>
         <Route path='/mentor' element={<ProtectedRoutes allowedRoles={["mentor"]}><Mentor/></ProtectedRoutes>}/>
         <Route path='/recruitor' element={<ProtectedRoutes allowedRoles={["recruitor"]}><Recruitor/></ProtectedRoutes>}/>

@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Sidebar from '../../components/SideBar';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Building, MapPin, Calendar, DollarSign, Badge, CheckCircle } from 'lucide-react';
 import uploadFileToCloudinary from '../../utils/uploadCloudinary';
+import { authContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const JobSearch = () => {
+  const { user } = useContext(authContext);
+  const userId = user._id;
+  console.log(userId);
+  
+  
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedJob, setSelectedJob] = useState(null);
@@ -14,12 +21,14 @@ const JobSearch = () => {
     phone: '',
     resume: null,
     jobId: '',
-    jobTitle: ''
+    jobTitle: '',
+    userId:userId
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [resumeURL, setResumeURL] = useState('');
   const BASE_URL = 'http://localhost:8000/api/v1'; // Update this to your actual base URL
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -75,6 +84,10 @@ const JobSearch = () => {
     }
   };
 
+  const handleApplicationNavigate=()=>{
+    navigate('/jobs/myapplied')
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,7 +97,8 @@ const JobSearch = () => {
       phone: formData.phone,
       resume: resumeURL, // Use resumeURL directly
       jobId: formData.jobId,
-      jobTitle: formData.jobTitle
+      jobTitle: formData.jobTitle,
+      userId:formData.userId
     };
   
     console.log('Form data to send:', formDataToSend);
@@ -118,7 +132,13 @@ const JobSearch = () => {
     <div className="flex h-screen bg-gray-100">
       <Sidebar />
       <div className="flex-1 p-8 overflow-auto">
-        <h1 className="text-3xl font-bold mb-6 text-center">Job Search</h1>
+        <div className='flex justify-between'>
+          <h1 className="text-3xl font-bold mb-6 text-center">Job Search</h1>
+        <button className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600" onClick={handleApplicationNavigate}>
+              View My Applications
+            </button> 
+        </div>
+       
         <div className="relative mb-6">
           <input
             type="text"

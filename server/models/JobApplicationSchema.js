@@ -1,5 +1,3 @@
-// server/models/JobApplicationSchema.js
-
 import mongoose from 'mongoose';
 
 const JobApplicationSchema = new mongoose.Schema({
@@ -32,6 +30,11 @@ const JobApplicationSchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'accepted', 'rejected'],
     default: 'pending',
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
 });
 
