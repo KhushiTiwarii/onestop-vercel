@@ -21,8 +21,11 @@ const SidebarRec = () => {
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
     toast.success("Logged out");
-    navigate('/login');
+    navigate('/');
   };
+  const handleClick=()=>{
+    navigate('/')
+  }
 
   return (
     <div className={`flex flex-col h-full bg-purple-950 ${isExpanded ? 'w-64' : 'w-20'} transition-width duration-300`}>
@@ -35,6 +38,7 @@ const SidebarRec = () => {
         <img 
           src="/logo-1.png"
           alt="Logo" 
+          onClick={handleClick}
           className={`${isExpanded ? 'w-32' : 'w-12'} transition-all duration-300 object-contain`}
         />
       </div>
