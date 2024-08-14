@@ -37,6 +37,18 @@ const categories = {
     { question: "Which number is the odd one out: 8, 12, 18, 20?", options: ["8", "12", "18", "20"], correctAnswer: "18" },
     { question: "What comes next in the sequence: 1, 2, 4, 8, ...?", options: ["10", "12", "14", "16"], correctAnswer: "16" },
     { question: "Which shape does not belong with the others?", options: ["Circle", "Square", "Triangle", "Rectangle"], correctAnswer: "Circle" }
+  ],
+  SoftSkills: [
+    { question: "Which of the following is most important in effective communication?", options: ["Speaking", "Listening", "Writing", "Reading"], correctAnswer: "Listening" },
+    { question: "What is a key element of teamwork?", options: ["Individualism", "Collaboration", "Competition", "Leadership"], correctAnswer: "Collaboration" },
+    { question: "What is the best way to handle conflict in a team?", options: ["Avoidance", "Confrontation", "Negotiation", "Ignoring"], correctAnswer: "Negotiation" },
+    { question: "Which of the following is a leadership quality?", options: ["Dominance", "Empathy", "Passivity", "Impatience"], correctAnswer: "Empathy" },
+    { question: "What is crucial for time management?", options: ["Procrastination", "Prioritization", "Multitasking", "Delegation"], correctAnswer: "Prioritization" },
+    { question: "Which skill is important for giving constructive feedback?", options: ["Criticism", "Empathy", "Aggressiveness", "Impatience"], correctAnswer: "Empathy" },
+    { question: "What is the best approach to problem-solving?", options: ["Reactive", "Proactive", "Indifferent", "Avoidant"], correctAnswer: "Proactive" },
+    { question: "Which skill is vital for building professional relationships?", options: ["Networking", "Criticism", "Isolation", "Confrontation"], correctAnswer: "Networking" },
+    { question: "What is essential for effective public speaking?", options: ["Fear", "Confidence", "Silence", "Reading"], correctAnswer: "Confidence" },
+    { question: "Which of these is a soft skill?", options: ["Coding", "Empathy", "Mathematics", "Physics"], correctAnswer: "Empathy" }
   ]
 };
 function AptitudeTest() {
