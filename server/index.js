@@ -14,18 +14,18 @@ const port = process.env.PORT || 8000
 
 
 
-// // CORS options
-// const corsOptions = {
-//     origin: true
-// }
+// CORS options
+const corsOptions = {
+    origin: true
+}
 
-app.use(cors(
-    {
-        origin:["https://one-stop-client-eta.vercel.app"],
-        methods:["POST","GET","PATCH","PUT","DELETE"],
-        credentials:true
-    }
-));
+// app.use(cors(
+//     {
+//         origin:["https://one-stop-client-eta.vercel.app"],
+//         methods:["POST","GET","PATCH","PUT","DELETE"],
+//         credentials:true
+//     }
+// ));
 
 app.get('/', (req, res) => {
     res.send("API is working")
@@ -48,7 +48,7 @@ const connectDB = async () => {
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Routes
 app.use('/api/v1/auth', authRouter);
