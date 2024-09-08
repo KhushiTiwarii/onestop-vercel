@@ -21,7 +21,7 @@ const port = process.env.PORT || 8000
 
 app.use(cors(
     {
-        origin:["http://localhost:5173"],
+        origin:["https://one-stop-client-eta.vercel.app/"],
         methods:["POST","GET","PATCH","PUT","DELETE"],
         credentials:true
     }
