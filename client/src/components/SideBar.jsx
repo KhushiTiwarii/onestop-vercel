@@ -33,8 +33,12 @@ const Sidebar = () => {
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
     toast.success("Logged out");
-    navigate('/login');
+    navigate('/');
   };
+
+  const handleclick = ()=>{
+    navigate('/')
+  }
 
   return (
     <div className={`flex flex-col h-full bg-purple-950 ${isExpanded ? 'w-72' : 'w-20'} transition-width duration-300`}>
@@ -43,6 +47,7 @@ const Sidebar = () => {
         <img 
           src="/logo-1.png"
           alt="Logo" 
+          onClick={handleclick}
           className={`${isExpanded ? 'w-32 pt-2' : 'w-12 mt-2'} transition-all duration-300 object-contain`}
         />
         <button onClick={toggleSidebar} className="text-white">

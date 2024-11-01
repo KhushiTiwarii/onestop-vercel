@@ -22,6 +22,7 @@ import AptitudeTest from '../assets/pages/mockinterview/AptitudeTest'
 import StudentDashboard from '../assets/pages/dashboard/StudentDashBoard'
 import Dashboard from '../assets/pages/Dashboard'
 import Applications from '../assets/pages/Applications'
+import SoftSkills from '../assets/pages/mockinterview/SoftSkills'
 
 const Routers = () => {
   return (
@@ -44,6 +45,7 @@ const Routers = () => {
           <Route path="/playlist/:id" element={<PlaylistContent />} />
           <Route path="/add-job" element={<AddJob />} />
           <Route path="/AptitudeTest" element={<AptitudeTest />} />
+          <Route path="/softskills" element={<SoftSkills />} />
 
     </Routes>
   )

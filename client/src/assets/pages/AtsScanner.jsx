@@ -243,3 +243,4 @@ const AtsScanner = () => {
 };
 
 export default AtsScanner;
+
